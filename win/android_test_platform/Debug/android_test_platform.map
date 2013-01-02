@@ -1,0 +1,321 @@
+******************************************************************************
+       MSP430 Evaluation Linker PC v3.3.2                      
+******************************************************************************
+>> Linked Sat Aug 27 10:26:39 2011
+
+OUTPUT FILE NAME:   <android_test_platform.out>
+ENTRY POINT SYMBOL: "_c_int00"  address: 0000fa68
+
+
+MEMORY CONFIGURATION
+
+         name            origin    length      used     unused   attr    fill
+----------------------  --------  ---------  --------  --------  ----  --------
+  SFR                   00000000   00000010  00000000  00000010  RWIX
+  PERIPHERALS_8BIT      00000010   000000f0  00000000  000000f0  RWIX
+  PERIPHERALS_16BIT     00000100   00000100  00000000  00000100  RWIX
+  RAM                   00000200   00000080  00000066  0000001a  RWIX
+  INFOD                 00001000   00000040  00000000  00000040  RWIX
+  INFOC                 00001040   00000040  00000000  00000040  RWIX
+  INFOB                 00001080   00000040  00000000  00000040  RWIX
+  INFOA                 000010c0   00000040  00000000  00000040  RWIX
+  FLASH                 0000f800   000007e0  00000336  000004aa  RWIX
+  INT00                 0000ffe0   00000002  00000000  00000002  RWIX
+  INT01                 0000ffe2   00000002  00000000  00000002  RWIX
+  INT02                 0000ffe4   00000002  00000000  00000002  RWIX
+  INT03                 0000ffe6   00000002  00000000  00000002  RWIX
+  INT04                 0000ffe8   00000002  00000000  00000002  RWIX
+  INT05                 0000ffea   00000002  00000000  00000002  RWIX
+  INT06                 0000ffec   00000002  00000000  00000002  RWIX
+  INT07                 0000ffee   00000002  00000000  00000002  RWIX
+  INT08                 0000fff0   00000002  00000000  00000002  RWIX
+  INT09                 0000fff2   00000002  00000002  00000000  RWIX
+  INT10                 0000fff4   00000002  00000002  00000000  RWIX
+  INT11                 0000fff6   00000002  00000000  00000002  RWIX
+  INT12                 0000fff8   00000002  00000000  00000002  RWIX
+  INT13                 0000fffa   00000002  00000000  00000002  RWIX
+  INT14                 0000fffc   00000002  00000000  00000002  RWIX
+  RESET                 0000fffe   00000002  00000002  00000000  RWIX
+
+
+SECTION ALLOCATION MAP
+
+ output                                  attributes/
+section   page    origin      length       input sections
+--------  ----  ----------  ----------   ----------------
+.pinit     0    0000f800    00000000     UNINITIALIZED
+
+.bss       0    00000200    00000034     UNINITIALIZED
+                  00000200    0000002c     main.obj (.bss)
+                  0000022c    00000004     rts430.lib : _lock.obj (.bss)
+                  00000230    00000004                : boot.obj (.bss)
+
+.stack     0    0000024c    00000032     UNINITIALIZED
+                  0000024c    00000002     rts430.lib : boot.obj (.stack)
+                  0000024e    00000030     --HOLE--
+
+.text      0    0000f800    00000302     
+                  0000f800    0000013c     main.obj (.text:main)
+                  0000f93c    00000046     rts430.lib : autoinit.obj (.text:_auto_init)
+                  0000f982    00000042     main.obj (.text:WDT)
+                  0000f9c4    0000003e     main.obj (.text:Transmit)
+                  0000fa02    0000003a     main.obj (.text:Timer_A)
+                  0000fa3c    0000002c     main.obj (.text:ConfigClocks)
+                  0000fa68    00000026     rts430.lib : boot.obj (.text:_c_int00_noexit)
+                  0000fa8e    00000022     main.obj (.text:ConfigPins)
+                  0000fab0    00000012     rts430.lib : memcpy.obj (.text:memcpy)
+                  0000fac2    00000010                : epilog.obj (.text)
+                  0000fad2    0000000c     main.obj (.text:ConfigTimerA2)
+                  0000fade    0000000c     main.obj (.text:ConfigWDT)
+                  0000faea    00000008     main.obj (.text:ConfigADC10)
+                  0000faf2    00000006     main.obj (.text:FaultRoutine)
+                  0000faf8    00000004     rts430.lib : pre_init.obj (.text:_system_pre_init)
+                  0000fafc    00000004                : exit.obj (.text:abort)
+                  0000fb00    00000002                : _lock.obj (.text:_nop)
+
+.cinit     0    0000fb02    00000034     
+                  0000fb02    00000032     main.obj (.cinit)
+                  0000fb34    00000002     --HOLE-- [fill = 0]
+
+.int09     0    0000fff2    00000002     
+                  0000fff2    00000002     main.obj (.int09)
+
+.int10     0    0000fff4    00000002     
+                  0000fff4    00000002     main.obj (.int10)
+
+.reset     0    0000fffe    00000002     
+                  0000fffe    00000002     rts430.lib : boot.obj (.reset)
+
+
+GLOBAL SYMBOLS: SORTED ALPHABETICALLY BY Name 
+
+address    name
+--------   ----
+00000200   .bss
+0000f800   .text
+0000004a   ADC10AE0
+000001b0   ADC10CTL0
+000001b2   ADC10CTL1
+00000048   ADC10DTC0
+00000049   ADC10DTC1
+000001b4   ADC10MEM
+000001bc   ADC10SA
+00000057   BCSCTL1
+00000058   BCSCTL2
+00000053   BCSCTL3
+00000202   BitCnt
+0000fafc   C$$EXIT
+000010ff   CALBC1_1MHZ
+000010fe   CALDCO_1MHZ
+0000faea   ConfigADC10
+0000fa3c   ConfigClocks
+0000fa8e   ConfigPins
+0000fad2   ConfigTimerA2
+0000fade   ConfigWDT
+00000056   DCOCTL
+00000128   FCTL1
+0000012a   FCTL2
+0000012c   FCTL3
+0000faf2   FaultRoutine
+00000000   IE1
+00000002   IFG1
+00000022   P1DIR
+00000025   P1IE
+00000024   P1IES
+00000023   P1IFG
+00000020   P1IN
+00000021   P1OUT
+00000027   P1REN
+00000026   P1SEL
+0000002a   P2DIR
+0000002d   P2IE
+0000002c   P2IES
+0000002b   P2IFG
+00000028   P2IN
+00000029   P2OUT
+0000002f   P2REN
+0000002e   P2SEL
+00000172   TACCR0
+00000174   TACCR1
+00000162   TACCTL0
+00000164   TACCTL1
+00000160   TACTL
+0000012e   TAIV
+00000170   TAR
+00000200   TXByte
+0000fa02   Timer_A
+0000f9c4   Transmit
+00000204   TxHI
+00000218   TxIN
+0000020e   TxLO
+0000007a   USICCTL
+0000007a   USICKCTL
+0000007b   USICNT
+00000078   USICTL
+00000078   USICTL0
+00000079   USICTL1
+0000007c   USISR
+0000007d   USISRH
+0000007c   USISRL
+0000f982   WDT
+00000120   WDTCTL
+0000027e   __STACK_END
+00000032   __STACK_SIZE
+00000001   __TI_args_main
+00000001   __TI_auto_init
+00000001   __TI_exit
+ffffffff   __binit__
+00000200   __bss__
+ffffffff   __c_args__
+0000fb02   __cinit__
+00000234   __end__
+0000fb02   __etext__
+ffffffff   __pinit__
+0000f800   __text__
+0000f93c   _auto_init
+0000fa68   _c_int00
+0000fa68   _c_int00_noexit
+00000230   _cleanup_ptr
+00000232   _dtors_ptr
+0000022c   _lock
+0000fb00   _nop
+0000fffe   _reset_vector
+0000024c   _stack
+0000faf8   _system_pre_init
+0000022e   _unlock
+0000fafc   abort
+ffffffff   binit
+0000fb02   cinit
+00000234   end
+0000fb02   etext
+0000face   func_epilog_1
+0000facc   func_epilog_2
+0000faca   func_epilog_3
+0000fac8   func_epilog_4
+0000fac6   func_epilog_5
+0000fac4   func_epilog_6
+0000fac2   func_epilog_7
+0000022a   i
+0000f800   main
+0000fab0   memcpy
+ffffffff   pinit
+00000222   tempRaw
+00000226   tempSet
+
+
+GLOBAL SYMBOLS: SORTED BY Symbol Address 
+
+address    name
+--------   ----
+00000000   IE1
+00000001   __TI_args_main
+00000001   __TI_auto_init
+00000001   __TI_exit
+00000002   IFG1
+00000020   P1IN
+00000021   P1OUT
+00000022   P1DIR
+00000023   P1IFG
+00000024   P1IES
+00000025   P1IE
+00000026   P1SEL
+00000027   P1REN
+00000028   P2IN
+00000029   P2OUT
+0000002a   P2DIR
+0000002b   P2IFG
+0000002c   P2IES
+0000002d   P2IE
+0000002e   P2SEL
+0000002f   P2REN
+00000032   __STACK_SIZE
+00000048   ADC10DTC0
+00000049   ADC10DTC1
+0000004a   ADC10AE0
+00000053   BCSCTL3
+00000056   DCOCTL
+00000057   BCSCTL1
+00000058   BCSCTL2
+00000078   USICTL
+00000078   USICTL0
+00000079   USICTL1
+0000007a   USICCTL
+0000007a   USICKCTL
+0000007b   USICNT
+0000007c   USISR
+0000007c   USISRL
+0000007d   USISRH
+00000120   WDTCTL
+00000128   FCTL1
+0000012a   FCTL2
+0000012c   FCTL3
+0000012e   TAIV
+00000160   TACTL
+00000162   TACCTL0
+00000164   TACCTL1
+00000170   TAR
+00000172   TACCR0
+00000174   TACCR1
+000001b0   ADC10CTL0
+000001b2   ADC10CTL1
+000001b4   ADC10MEM
+000001bc   ADC10SA
+00000200   .bss
+00000200   TXByte
+00000200   __bss__
+00000202   BitCnt
+00000204   TxHI
+0000020e   TxLO
+00000218   TxIN
+00000222   tempRaw
+00000226   tempSet
+0000022a   i
+0000022c   _lock
+0000022e   _unlock
+00000230   _cleanup_ptr
+00000232   _dtors_ptr
+00000234   __end__
+00000234   end
+0000024c   _stack
+0000027e   __STACK_END
+000010fe   CALDCO_1MHZ
+000010ff   CALBC1_1MHZ
+0000f800   .text
+0000f800   __text__
+0000f800   main
+0000f93c   _auto_init
+0000f982   WDT
+0000f9c4   Transmit
+0000fa02   Timer_A
+0000fa3c   ConfigClocks
+0000fa68   _c_int00
+0000fa68   _c_int00_noexit
+0000fa8e   ConfigPins
+0000fab0   memcpy
+0000fac2   func_epilog_7
+0000fac4   func_epilog_6
+0000fac6   func_epilog_5
+0000fac8   func_epilog_4
+0000faca   func_epilog_3
+0000facc   func_epilog_2
+0000face   func_epilog_1
+0000fad2   ConfigTimerA2
+0000fade   ConfigWDT
+0000faea   ConfigADC10
+0000faf2   FaultRoutine
+0000faf8   _system_pre_init
+0000fafc   C$$EXIT
+0000fafc   abort
+0000fb00   _nop
+0000fb02   __cinit__
+0000fb02   __etext__
+0000fb02   cinit
+0000fb02   etext
+0000fffe   _reset_vector
+ffffffff   __binit__
+ffffffff   __c_args__
+ffffffff   __pinit__
+ffffffff   binit
+ffffffff   pinit
+
+[110 symbols]

@@ -1,0 +1,101 @@
+=========================================================
+Development and debugging guide for AndroidTestBenchv0.1
+=========================================================
+
+This document introduces the main steps to build and write the Android module test platform application to MSP430 Flash memory. The source code is provided so that it can be modified and reused with the MSP430G2231 MCU or other MSP430 family MCUs. The current application is a Test Bench application for the Android based smartphones used to validate portrait/landscape switching on the display at a certain give angle.
+
+The development included :
+
+ - GPIO config for stepper driver
+ - software UART for host-target communication
+ - accessory functions to handle/process UART data
+ - use DEBUG_ON if flash is bigger than 2K 
+ - DEBUG_ON used to test only UART bi-directional functionality
+
+Short description:
+
+This software configures 4 GPIO pind of PORT1 in the MSP430G2231 MCU to be used as stepper control lines. 2 GPIO lines in PORT1 are used for TimerA and are configred for RX and TX for a software UART module implemented to exchange data with the host computer. The serial line is then routed through the FET driver so that packets are sent through the USB line to the host using a driver to register as a serial device to the OS. The values sent over the UART are ASCII coded and then converted to steps sequence to be sent to the stepper motor. The software has also a debugging feature to be enabled when removing the stepper control code to verify bidirectonal RX-TX UART functionality. These feature was used in the early stage of the development to test the UART functionality. In the production code this sections are under conditional compiling due to the fact that the program memory (flash) is limited to 2KB. 
+
+=================================================================================================
+
+To modify and rebuild application one must follow some steps depending on the host OS specific.
+
+===================
+Windows developers
+===================
+
+- Extract the contents of setup_CCS_MC_Core.zip and install the Code Composer Studio Version for MSP430. It is free but with limited size restrictions. This IDE offers an integrated toolchain from TI and also a powerful debugging environment. The initial project was developed unde CCS.
+- To start developing one can import the existing project in AndroidTestBenchv0.1/win/android_test_platform/ into CCS and start coding, building and debugging.
+
+=================
+Linux developers
+=================
+
+To start the development for the MSP430 platform under Linux one must follow the next steps : 
+
+1. Install required packages:
+
+	sudo aptitude install git-core gcc-4.4 texinfo patch libncurses5-dev zlibc zlib1g-dev libx11-dev libusb-dev libreadline6-dev
+
+Download and compile mspgcc:
+
+	git clone git://mspgcc4.git.sourceforge.net/gitroot/mspgcc4/mspgcc4
+	cd mspgcc4
+	sudo ./buildgcc.sh 
+
+Assume the default answers when the scripts ask you. 
+Assume yes to last question “Do you want to start build right now? (y/n) [n] ” because the default is no. 
+
+2. Download and compile mspdebug:
+
+	wget -O mspdebug.tar.gz http://sourceforge.net/projects/mspdebug/files/latest
+	tar -zxvf mspdebug.tar.gz
+	cd mspdebug
+	make
+	sudo make install
+
+3. Create a udev rule to be able to use the usb debug shield:
+
+	sudo nano /etc/udev/rules.d/46-TI_launchpad.rules
+
+add the following udev rule :
+
+	ATTRS{idVendor}=="0451", ATTRS{idProduct}=="f432", MODE="0660", GROUP="plugdev"
+
+and restart udev :
+
+	sudo restart udev
+
+4. Compile the source code (AndroidTestBenchv0.1/linux/src/main.c) and create de elf file data to be uploaded to the MSP430 chip:
+
+	/opt/msp430-gcc-4.4.5/bin/msp430-gcc -Os -mmcu=msp430x2231 -o main.elf main.c
+
+5. Connect the platform to the pc and upload the program to chip:
+
+	mspdebug rf2500
+	prog main.elf
+	run
+
+==========================================================================================
+
+Operation example :
+
+1. Connect the module to a 12VDC power supply. 
+2. Connect the USB plug to the host computer. 
+3. Open a terminal utility software (e.g. GtkTerm(linux), Terminal(win) with 9600-8n1).
+4. Identify the device registered to the OS (e.g. linux : ttyAM0 and win : COM4).
+5. Write the degrees value to move for the platform.
+	a. The value is given in decimal and consider LF to the end of each input value.
+	b. To return to the base position send a 0 degree command.
+6. After sending a value via the UART to the target module the stepper should rotate the 
+phone to the desired angle in trig sense (counterclockwise).
+
+==========================================================================================
+
+To support further reading the MCU datasheets and user guide are included in the delivery.
+
+
+Changelog :
+
+2011.09.24 Cristian Axenie - cristian.axenie@windriver.com
+- Added first version 
